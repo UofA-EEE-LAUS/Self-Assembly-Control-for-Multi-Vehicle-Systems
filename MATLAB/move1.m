@@ -1,13 +1,27 @@
-function[position]=move1(x,y)
+function [position]=move1(x,y)
 %---------------------------------SETUP----------------------------------%
+% load api library
+vrep=remApi('remoteApi');
+% close all the potential link
+vrep.simxFinish(-1);
+%set up connection to v-rep simulation on port 19999
+clientID=vrep.simxStart('127.0.0.1',19999,true,true,5000,5);
+% open the synchronous mode to control the objects in vrep
+vrep.simxSynchronous(clientID,true);
+% Simulation Initialization
+vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot);
+%clientID is -1 if the connection to the server was NOT possible
+if (clientID>-1)
+    disp('connected to v-rep');
+
 %get position
-[returnCode,rover1]=vrep.simxGetObjectHandle(clientID,strcat('rover1',roverID),vrep.simx_opmode_blocking);
+[returnCode,rover1]=vrep.simxGetObjectHandle(clientID,'rover1',vrep.simx_opmode_blocking);
 [returnCode,position]=vrep.simxGetObjectPosition(clientID,rover1,-1,vrep.simx_opmode_blocking);
 positionx=position(:,1);
 positiony=position(:,2);
 %------------------------------CODE HERE------------------------------%
 for threshold=0.2
-if (abs(positionx-x) >= threshold || abs(positiony-y) >= threshold)
+while (abs(positionx-x) >= threshold || abs(positiony-y) >= threshold)
     rover_radius=15;
     wheel_radius=5.22;
     const_linearVelocity=(0.5*pi*wheel_radius);
@@ -33,15 +47,7 @@ if (abs(positionx-x) >= threshold || abs(positiony-y) >= threshold)
         [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor0,v0,vrep.simx_opmode_blocking);
         [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor1,v1,vrep.simx_opmode_blocking);
         [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor2,v2,vrep.simx_opmode_blocking);
-else
-    %defining motor handles
-        %return code functions as a debug tool/error message
-        [returnCode,motor0]=vrep.simxGetObjectHandle(clientID,'motor01',vrep.simx_opmode_blocking);
-        [returnCode,motor1]=vrep.simxGetObjectHandle(clientID,'motor11',vrep.simx_opmode_blocking);
-        [returnCode,motor2]=vrep.simxGetObjectHandle(clientID,'motor21',vrep.simx_opmode_blocking);
-        %setting motor speeds for straight line
-        [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor0,v0,vrep.simx_opmode_blocking);
-        [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor1,v1,vrep.simx_opmode_blocking);
-        [returnCode]=vrep.simxSetJointTargetVelocity(clientID,motor2,v2,vrep.simx_opmode_blocking);
+
+end
 end
 end
