@@ -30,9 +30,9 @@ if (clientID>-1)
     y2=position2(:,2);
     [xr0,yr0,xr1,yr1,xr2,yr2]=lineformation(x0,y0,x1,y1,x2,y2);
  %Get 3 rovers' position
-        move0(xr0,yr0);
-        move1(xr1,yr1);
-        move2(xr2,yr2);
+        Move(xr0,yr0,int2str(0),clientID,vrep);
+        Move(xr1,yr1,int2str(1),clientID,vrep);
+        Move(xr2,yr2,int2str(2),clientID,vrep);
         % pause(1)
         elapsedTime = toc;     
 %------------------------------CODE HERE------------------------------%
