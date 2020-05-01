@@ -16,15 +16,15 @@ yr0=y0;
       end
   end
  for x01=abs(x0-x1)
-     if x01~=1
-         xr1=x0+1;
+     if x01~=0.315
+         xr1=x0+0.315;
      else
          xr1=x1;
      end
  end
  for x02=abs(x0-x2)
-     if x02~=2
-         xr2=x0+2;
+     if x02~=0.63
+         xr2=x0+0.63;
      else
          xr2=x2;
      end
