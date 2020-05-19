@@ -34,7 +34,7 @@ dist_y(1:500) = y-position_y;
 i = 1;
 elapsedTime = 1;
 threshold = 0.1;
-thresholdphi=5/57.3;
+thresholdphi=5*(pi/180);
 
 
 [returnCode, position_d]=vrep.simxGetObjectPosition(clientID,rover,-1,vrep.simx_opmode_blocking);
@@ -74,7 +74,7 @@ while abs(position_x-x) >= threshold || abs(position_y-y) >= threshold
     phi = theta_sample + (pi + 1.5);
     disp(phi);
     
-    theta = abs(atan(dy/dx));
+    theta = atan(dy/dx);
     dphi = 0.05*(theta-(theta_sample+pi));
     
     v_xs = (position_dx - position_x) / elapsedTime;
