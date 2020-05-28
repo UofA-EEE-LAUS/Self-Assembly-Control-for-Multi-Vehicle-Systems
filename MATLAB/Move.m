@@ -47,9 +47,10 @@ threshold = 0.1;
 while abs(position_x-x) >= threshold || abs(position_y-y) >= threshold
     
     tic;
-    %get object position for derivative
+    
     [returnCode, position_d]=vrep.simxGetObjectPosition(clientID,rover,-1,vrep.simx_opmode_blocking);
     [returnCode, orientations] = vrep.simxGetObjectOrientation(clientID,laser_sensor,-1,vrep.simx_opmode_buffer);
+    %get object position for derivative
     position_dx=position_d(:,1);
     position_dy=position_d(:,2);
     
