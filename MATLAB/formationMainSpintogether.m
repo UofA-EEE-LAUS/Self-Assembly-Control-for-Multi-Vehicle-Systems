@@ -38,7 +38,7 @@ if (clientID>-1)
         dl02=sqrt((abs(x0-x2)^2)+(abs(y0-y2)^2));
         thetal01=atan(abs(y0-y1)/abs(x0-x1))*(180/pi);
         thetal02=atan(abs(y0-y2)/abs(x0-x1))*(180/pi);
-        [xl0,yl0,xl1,yl1,xl2,yl2]=linedistanceformation(x0,y0,d01,d02,thetal01,thetal02);
+        [xl0,yl0,xl1,yl1,xl2,yl2]=linedistanceformation(x0,y0,dl01,dl02,thetal01,thetal02);
         %Get 3 rovers' position
         Move2(xl2,yl2,positionl2,int2str(2),clientID,vrep);
         Move2(xl1,yl1,positionl1,int2str(1),clientID,vrep);
