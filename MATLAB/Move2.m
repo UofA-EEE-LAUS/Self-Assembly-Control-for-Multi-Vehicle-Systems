@@ -21,9 +21,11 @@ else
     end
 end
 
+
 for orien_0 = theta_sample
     for elapsedTime = 1
         for threshold = 0.1
+            
             
             %control
             if abs(position_x-x) >= threshold || abs(position_y-y) >= threshold
@@ -79,9 +81,14 @@ for orien_0 = theta_sample
                 position_x=position(:,1);
                 position_y=position(:,2);
                 
+                %record position
+                %dist_x(i) = dist_x(i) - (x - position_x);
+                %dist_y(i) = dist_y(i) - (y - position_y);
+                %i = i + 1;
+                
                 elapsedTime = toc;
                 
-            else
+            elseif abs(position_x-x) <= threshold && abs(position_y-y) <= threshold
                 %return code functions as a debug tool/error message
                 [returnCode,motor_0]=vrep.simxGetObjectHandle(clientID,strcat('motor0',Num),vrep.simx_opmode_blocking);
                 [returnCode,motor_1]=vrep.simxGetObjectHandle(clientID,strcat('motor1',Num),vrep.simx_opmode_blocking);
@@ -95,3 +102,4 @@ for orien_0 = theta_sample
     end
 end
 end
+
