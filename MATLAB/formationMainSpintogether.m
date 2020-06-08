@@ -14,7 +14,7 @@ vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot);
 if (clientID>-1)
     disp('connected to v-rep');
     %------------------------------CODE HERE------------------------------
-    for loop = 1:21
+    for loop = 1:46
         tic
         %Get 3 rovers' position
         [returnCode,rover0]=vrep.simxGetObjectHandle(clientID,strcat('rover0'),vrep.simx_opmode_blocking);
@@ -41,8 +41,8 @@ if (clientID>-1)
         [xl0,yl0,xl1,yl1,xl2,yl2]=linedistanceformation(x0,y0,dl01,dl02,thetal01,thetal02);
         %Get 3 rovers' position
         
-        MoveThate2(xl1,yl1,3*pi/2,int2str(1),clientID,vrep);
-        MoveThate2(xl2,yl2,3*pi/2,int2str(2),clientID,vrep);
+        MoveTheta(xl1,yl1,positionl1,3*pi/2,int2str(1),clientID,vrep);
+        MoveTheta(xl2,yl2,positionl2,3*pi/2,int2str(2),clientID,vrep);
         
         
         elapsedTime = toc;
@@ -99,8 +99,8 @@ if (clientID>-1)
         yl2=positionl2(:,2);
         [xs0,ys0,xs1,ys1,xs2,ys2]=split(xl0,yl0,xl1,yl1,xl2,yl2);
         %Get 3 rovers' position
-        MoveThate2(xl1,yl1,pi/2,int2str(1),clientID,vrep);
-        MoveThate2(xs2,ys2,pi/2,int2str(2),clientID,vrep);
+        MoveTheta(xs1,ys1,positions1,pi/2,int2str(1),clientID,vrep);
+        MoveTheta(xs2,ys2,positions2,pi/2,int2str(2),clientID,vrep);
         
         
         elapsedTime = toc;
@@ -132,9 +132,9 @@ if (clientID>-1)
         thetat02=atan(abs(ys0-ys2)/abs(xs0-xs1))*(180/pi);
         [xt0,yt0,xt1,yt1,xt2,yt2]=tridistanceformation(xs0,ys0,dt01,dt02,thetat01,thetat02);
         %Get 3 rovers' position
-        MoveThate2(xt0,yt0,-pi/2,int2str(0),clientID,vrep);
-        MoveThate2(xt1,yt1,pi/3,int2str(1),clientID,vrep);
-        MoveThate2(xt2,yt2,2*pi/3,int2str(2),clientID,vrep);
+        MoveTheta(xt0,yt0,positiont0,-pi/2,int2str(0),clientID,vrep);
+        MoveTheta(xt1,yt1,positiont1,pi/3,int2str(1),clientID,vrep);
+        MoveTheta(xt2,yt2,positiont2,2*pi/3,int2str(2),clientID,vrep);
         
         
         elapsedTime = toc;

@@ -161,12 +161,12 @@ for orien_0 = theta_sample
                         
                         elapsedTime = toc;
                         
-                    end
-                    
-                    
-                    
-                    %control
-                    if abs(psidformation-psi_grip) >= thresholdphi %% Reach near the target position, only rotate to the specified angle
+                        
+                        
+                        
+                        
+                        %control
+                    elseif abs(psidformation-psi_grip) >= thresholdphi %% Reach near the target position, only rotate to the specified angle
                         
                         tic;
                         %get object position for derivative
