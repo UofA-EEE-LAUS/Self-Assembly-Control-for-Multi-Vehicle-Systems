@@ -40,12 +40,16 @@ if (clientID>-1)
         thetal02=atan(abs(y0-y2)/abs(x0-x1))*(180/pi);
         [xl0,yl0,xl1,yl1,xl2,yl2]=linedistanceformation(x0,y0,dl01,dl02,thetal01,thetal02);
         %Get 3 rovers' position
-        Move2(xl2,yl2,positionl2,int2str(2),clientID,vrep);
-        Move2(xl1,yl1,positionl1,int2str(1),clientID,vrep);
+        MoveThate2(xl1,yl1,pi/2,int2str(1),clientID,vrep);
+        MoveThate2(xl2,yl2,pi/2,int2str(2),clientID,vrep);
+        
         
         elapsedTime = toc;
     end
     pause(1);
+    
+    
+    
     for loop = 1:2
         tic
         %Get 3 rovers' position
@@ -68,8 +72,9 @@ if (clientID>-1)
         yl2=positionl2(:,2);
         [xs0,ys0,xs1,ys1,xs2,ys2]=split(xl0,yl0,xl1,yl1,xl2,yl2);
         %Get 3 rovers' position
-        Move2(xs2,ys2,positions2,int2str(2),clientID,vrep);
-        Move2(xs1,ys1,positions1,int2str(1),clientID,vrep);
+        MoveThate2(xl1,yl1,pi/2,int2str(1),clientID,vrep);
+        MoveThate2(xs2,ys2,pi/2,int2str(2),clientID,vrep);
+       
         
         elapsedTime = toc;
     end
@@ -100,8 +105,10 @@ if (clientID>-1)
         thetat02=atan(abs(ys0-ys2)/abs(xs0-xs1))*(180/pi);
         [xt0,yt0,xt1,yt1,xt2,yt2]=tridistanceformation(xs0,ys0,dt01,dt02,thetat01,thetat02);
           %Get 3 rovers' position
-        Move2(xt2,yt2,positiont2,int2str(2),clientID,vrep);
-        Move2(xt1,yt1,positiont1,int2str(1),clientID,vrep);
+        MoveThate2(xt0,yt0,-pi/2,int2str(0),clientID,vrep);
+        MoveThate2(xt1,yt1,pi/3,int2str(1),clientID,vrep);
+        MoveThate2(xt2,yt2,2*pi/3,int2str(2),clientID,vrep);
+       
         
         elapsedTime = toc;
     end
