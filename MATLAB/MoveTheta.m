@@ -166,7 +166,7 @@ for orien_0 = theta_sample
                     
                     
                     %control
-                    elseif abs(psidformation-psi_grip) >= thresholdphi %% Reach near the target position, only rotate to the specified angle
+                    if abs(psidformation-psi_grip) >= thresholdphi %% Reach near the target position, only rotate to the specified angle
                         
                         tic;
                         %get object position for derivative
@@ -266,7 +266,7 @@ for orien_0 = theta_sample
                     end
                     
                     
-                    elseif  abs(position_x-x) <= threshold && abs(position_y-y) <= threshold && abs(psidformation-psi_grip)<= thresholdphi
+                    if  abs(position_x-x) <= threshold && abs(position_y-y) <= threshold && abs(psidformation-psi_grip)<= thresholdphi
                         
                         %return code functions as a debug tool/error message
                         [returnCode,motor_0]=vrep.simxGetObjectHandle(clientID,strcat('motor0',Num),vrep.simx_opmode_blocking);
