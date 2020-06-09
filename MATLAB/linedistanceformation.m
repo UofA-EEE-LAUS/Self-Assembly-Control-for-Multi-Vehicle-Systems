@@ -4,7 +4,7 @@ for xr0=x0
         if theta01~=0
             theta01=0;
             if  d01*cos(theta01)~=0.32
-                d01=0.35;
+                d01=0.32;
                 xr1=xr0+d01*cos(theta01);
                 yr1=yr0+d01*sin(theta01);
             end
@@ -12,7 +12,7 @@ for xr0=x0
         if theta02~=0
             theta02=0;
             if d02*cos(theta02)~=0.64
-                d02=0.7;
+                d02=0.64;
                 xr2=xr0+d02*cos(theta02);
                 yr2=yr0+d02*sin(theta02);
             end
