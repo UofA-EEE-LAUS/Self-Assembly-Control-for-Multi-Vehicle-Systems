@@ -74,17 +74,10 @@ if (clientID>-1)
     gripper(dt02,int2str(2),clientID,vrep);
     
   end
-    pause(15);
-    
-    [returnCode,Gripper1]=vrep.simxGetObjectHandle(clientID,'P_Grip_right_angle_motor1',vrep.simx_opmode_oneshot_wait);
-    [returnCode,Gripper2]=vrep.simxGetObjectHandle(clientID,'P_Grip_right_angle_motor2',vrep.simx_opmode_oneshot_wait);
-    [returnCode]=vrep.simxSetJointForce(clientID,Gripper1,200,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointTargetVelocity(clientID,Gripper1,0.01,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointForce(clientID,Gripper2,200,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointTargetVelocity(clientID,Gripper2,0.01,vrep.simx_opmode_blocking);
+    pause(3);
     
     
-    for loop = 1:7
+    for loop = 1:10
         tic
         %Get 3 rovers' position
         [returnCode,rover0]=vrep.simxGetObjectHandle(clientID,strcat('rover0'),vrep.simx_opmode_blocking);
@@ -106,14 +99,15 @@ if (clientID>-1)
         yl2=positionl2(:,2);
         [xs0,ys0,xs1,ys1,xs2,ys2]=split(xl0,yl0,xl1,yl1,xl2,yl2);
         %Get 3 rovers' position
-        MoveTheta(xs0,ys0,positions0,pi/2,int2str(0),clientID,vrep);
-        MoveTheta(xs2,ys2,positions2,5*pi/3,int2str(2),clientID,vrep);
-        MoveTheta(xs1,ys1,positions1,4*pi/3,int2str(1),clientID,vrep);
+        MoveTheta(xs2,ys2,positions2,pi/2,int2str(2),clientID,vrep);
+        MoveTheta(xs1,ys1,positions1,pi/2,int2str(1),clientID,vrep);
+        MoveTheta(xt0,yt0,positiont0,-pi/2,int2str(0),clientID,vrep);
+        
         
         elapsedTime = toc;
     end
     pause(1);
-    for loop = 1:15
+    for loop = 1:3
         tic
         %Get 3 rovers' position
         [returnCode,rover0]=vrep.simxGetObjectHandle(clientID,strcat('rover0'),vrep.simx_opmode_blocking);
@@ -139,50 +133,13 @@ if (clientID>-1)
         thetat02=atan(abs(ys0-ys2)/abs(xs0-xs1))*(180/pi);
         [xt0,yt0,xt1,yt1,xt2,yt2]=tridistanceformation(xs0,ys0,dt01,dt02,thetat01,thetat02);
         %Get 3 rovers' position
-        MoveTheta(xt2,yt2,positiont2,5*pi/3,int2str(2),clientID,vrep);
-        MoveTheta(xt1,yt1,positiont1,4*pi/3,int2str(1),clientID,vrep);
-        
+        MoveTheta(xt1,yt1,positiont1,pi/3,int2str(1),clientID,vrep);
+        MoveTheta(xt2,yt2,positiont2,2*pi/3,int2str(2),clientID,vrep);
         
         
         elapsedTime = toc;
     end
     
-        pause(1);
-  for loop=1:10
-      tic;
-    [returnCode,rover0]=vrep.simxGetObjectHandle(clientID,strcat('rover0'),vrep.simx_opmode_blocking);
-    [returnCode,rover1]=vrep.simxGetObjectHandle(clientID,strcat('rover1'),vrep.simx_opmode_blocking);
-    [returnCode,rover2]=vrep.simxGetObjectHandle(clientID,strcat('rover2'),vrep.simx_opmode_blocking);
-    [returnCode,positions0]=vrep.simxGetObjectPosition(clientID,rover0,-1,vrep.simx_opmode_blocking);
-    [returnCode,positions1]=vrep.simxGetObjectPosition(clientID,rover1,-1,vrep.simx_opmode_blocking);
-    [returnCode,positions2]=vrep.simxGetObjectPosition(clientID,rover2,-1,vrep.simx_opmode_blocking);
-    position=[positions0; positions1; positions2];
-    positiont0=positions0;
-    positiont1=positions1;
-    positiont2=positions2;
-    
-    xs0=positions0(:,1);
-    ys0=positions0(:,2);
-    xs1=positions1(:,1);
-    ys1=positions1(:,2);
-    xs2=positions2(:,1);
-    ys2=positions2(:,2);
-    dt01=sqrt((abs(xs0-xs1)^2)+(abs(ys0-ys1)^2));
-    dt02=sqrt((abs(xs0-xs2)^2)+(abs(ys0-ys2)^2));
-    
-    gripper(dt01,int2str(1),clientID,vrep);
-    gripper(dt02,int2str(2),clientID,vrep);
-    
-  end
-    pause(10);
-    
-    [returnCode,Gripper1]=vrep.simxGetObjectHandle(clientID,'P_Grip_right_angle_motor1',vrep.simx_opmode_oneshot_wait);
-    [returnCode,Gripper2]=vrep.simxGetObjectHandle(clientID,'P_Grip_right_angle_motor2',vrep.simx_opmode_oneshot_wait);
-    [returnCode]=vrep.simxSetJointForce(clientID,Gripper1,200,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointTargetVelocity(clientID,Gripper1,0.01,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointForce(clientID,Gripper2,200,vrep.simx_opmode_blocking);
-    [returnCode]=vrep.simxSetJointTargetVelocity(clientID,Gripper2,0.01,vrep.simx_opmode_blocking);
-
     %------------------------------CODE HERE------------------------------%
     %destroy connection to v-rep simulation
     vrep.simxPauseSimulation(clientID,vrep.simx_opmode_oneshot_wait);

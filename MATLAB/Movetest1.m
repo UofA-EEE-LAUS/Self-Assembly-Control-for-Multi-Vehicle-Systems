@@ -74,7 +74,7 @@ while abs(position_x-x) >= threshold || abs(position_y-y) >= threshold
     phi = theta_sample + (pi + 1.5);
     disp(phi);
     
-    theta = atan(dy/dx);
+    theta = abs(atan(dy/dx));
     dphi = 0.05*(theta-(theta_sample+pi));
     
     v_xs = (position_dx - position_x) / elapsedTime;
@@ -111,7 +111,7 @@ end
     %control
 while abs(phid-(theta_sample+pi))>= thresholdphi
     
-    tic:
+    tic;
     [retureCode,position_d]=vrep.simxGetObjectPosition(clientID,rover,-1,vrep.simx_opmode_blocking);
     [retureCode,orientations]=vrep.simxGetObjectOrientation(clientID,laser_sensor,-1,vrep.simx_opmode_buffer);
     
