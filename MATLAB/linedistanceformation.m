@@ -1,8 +1,6 @@
 function [xr0,yr0,xr1,yr1,xr2,yr2]=linedistanceformation(dx,dy,x1,y1,x2,y2)
 for xr0=dx
     for yr0=dy
-     xr0=x0
-     yr0=y0
      d01=sqrt((abs(xr0-x1)^2)+(abs(yr0-y1)^2));
      theta01=atan(abs(yr0-y1)/abs(xr0-x1))*(180/pi);
         if theta01~=0
