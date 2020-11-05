@@ -24,8 +24,8 @@ vrep.simxStartSimulation(clientID,vrep.simx_opmode_oneshot);
      C_H = [C0,C1,C2,C3,C4,C5];
      
     [returnCode,dstate, detectedPoint,han,a] = vrep.simxReadProximitySensor(clientID, laser_sensor0, vrep.simx_opmode_blocking);
-%     C_H = [68,64,65,66,67,209];
 
+% providing the obstacle clearence value
 if han == C0
     det_dist = 0.3+0.2;
 elseif han == C1
