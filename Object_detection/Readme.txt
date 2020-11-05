@@ -17,3 +17,5 @@ Main function-->
       perform homography transfer function.
       perform modification of the positions as per the camera facing the scene.
     plot the results in the graph.
+
+The BEV calibration file is used to find the transfer matrix for the detection algorithm and it takes input in clockwise direction. 
