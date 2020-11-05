@@ -1,0 +1,8 @@
+Main functions->
+
+main_real_time_apf-> the position of the obstacle and the rover is taken from V-rep.
+
+apf_LM -> provides potential field
+apf_Path -> calculates path
+apf_det -> gets the object handle and provides the detection parameter
+apf_MoveSpin -> moves the rover
