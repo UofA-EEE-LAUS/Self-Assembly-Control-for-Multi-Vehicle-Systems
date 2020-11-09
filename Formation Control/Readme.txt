@@ -1,6 +1,7 @@
   The Formation Control of this project is using visual leader-follower method to solve the problem. 
   
-  The function apfpath.m gives a basic concept of how to generating a collision-free path within n direction.
+  The function apfpath.m gives a basic concept of how to generating a collision-free path within n direction, and
+the collision-free path will be consdered as the visual leader of the desired structure.  
   
   The function DCMline.m is for generating the line structure from the path and rotates the structure to global coordination.
   The function DCMTri.m is for generating the triangle structure from the path and rotates the structure to global coordination.
