@@ -2,7 +2,7 @@ function [ position ] = apfpath(begin,goal,obstacles,radius,extraradius,katt,kre
 %% Initiallization
 count=1;
 point=begin;
-%% Generate Path
+%% Generate Path In n Direction
 while (norm(point-goal)>0.2) && (count<=iterations) 
     storage=point;
     for i=1:8 
