@@ -1,0 +1,5 @@
+ Run scene_single_rover test_add_acceleration.ttt and pidtest, to recorde the acceleration and spped of the rover. Rover add 5% acceleration each loop.
+
+The save the data from the pidtest, use the data to run the pidplot, get the image of the speed and acceleration to read the max acceleration.
+
+scene_single_rover test_limite_acceleration.ttt have add the threshold max acceleration of the rover. This method fix the rover cannot suit in any situation issue.
