@@ -1,0 +1,8 @@
+Gripper Tier v1.01 and Gripper Tier v1.02 are the two versions of the platform. The Gripper Tier v1.02 version is the last version of this project.
+
+
+scene_single_rover with bump.ttt, scene_three_rover_with_bump.ttt and scene_two_rover with bump.ttt are the three scenes of the rovers cross the bummp.
+
+Use the matlab file input the desitination of the three rovers let them finish the line formation. then input the 1 to let the gripper close. Then input the final destination of the three rovers and cross the bump.
+
+From the result, the sigle rover cannot cross the bump, but the rover combination can cross the bump.
