@@ -1,0 +1,1 @@
+This PCB project is for connecting the step motors with the Arduino MKR1000 and the Battery via the voltage regularors.
