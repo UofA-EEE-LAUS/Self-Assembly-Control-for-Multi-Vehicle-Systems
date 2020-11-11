@@ -1,3 +1,6 @@
+  Author:Yangkawaiwei Zhou
+  Email:a1759122@student.adelaide.edu.au
+  
   The Formation Control of this project is using visual leader-follower method to solve the problem. 
   
   The function apfpath.m gives a basic concept of how to generating a collision-free path within n direction, and
