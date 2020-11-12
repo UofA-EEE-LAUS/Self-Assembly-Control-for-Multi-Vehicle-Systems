@@ -12,9 +12,9 @@ for i=1:num
         dphi=atan(diffy/diffx);
         if dx(i)>=x0
             if dphi>=0
-                dlyaw(i)=3*pi/2-dphi;
+                dlyaw(i)=pi-dphi;
             elseif dphi<0
-                dlyaw(i)=pi/2-dphi;
+                dlyaw(i)=3*pi/2-dphi;
             end
         elseif dx(i)<x0
             if dphi<0
